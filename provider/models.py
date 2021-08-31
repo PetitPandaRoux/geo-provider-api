@@ -29,6 +29,7 @@ class ProviderAvailibility(DateModification):
   """
 
   provider_code = models.CharField(max_length=5)
+  provider_name = models.CharField(max_length=255, blank=True, null=True)
   lamb_x_coord = models.IntegerField()
   lamb_y_coord = models.IntegerField()
   gps_x_coord = models.DecimalField(max_digits=18, decimal_places=15, blank=True, null=True)
@@ -45,6 +46,8 @@ class ProviderAvailibility(DateModification):
       self.gps_x_coord = point.long
       self.gps_y_coord = point.lat
     
+    self.provider_name = dict(PROVIDER_CODE_NAME).get(self.provider_code)
+
     # Create id to accelerate queries to databases
     self.index_lamb_coord = str(self.lamb_x_coord) + str(self.lamb_y_coord)
     super().save(*args, **kwargs)
