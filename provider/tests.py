@@ -49,7 +49,7 @@ class ProviderAvailibilityTestCase(TestCase):
 
   def test_index_and_gps_coord_should_be_created(self):
     """index_lamb_coord should be concatenation of x and y lambert 93 coordinates"""
-        #From csv provided 20810;103113;6848661;1;1;0
+    #From csv provided 20810;103113;6848661;1;1;0
     ProviderAvailibility.objects.create(
       provider_code='20810',
       lamb_x_coord=103113,
@@ -63,7 +63,7 @@ class ProviderAvailibilityTestCase(TestCase):
     self.assertEqual(coord.index_lamb_coord, '1031136848661')
     self.assertEqual(coord.provider_name, 'SFR')
 
-    #We use almost equal to workaround truncating and rounding
+    # We use almost equal to workaround truncating and rounding of decimals
     self.assertAlmostEqual(coord.gps_x_coord, Decimal(-5.088018169414728))
     self.assertAlmostEqual(coord.gps_y_coord, Decimal(48.46285384827896))
 

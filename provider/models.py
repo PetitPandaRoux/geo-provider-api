@@ -32,8 +32,10 @@ class ProviderAvailibility(DateModification):
   provider_name = models.CharField(max_length=255, blank=True, null=True)
   lamb_x_coord = models.IntegerField()
   lamb_y_coord = models.IntegerField()
-  gps_x_coord = models.DecimalField(max_digits=18, decimal_places=15, blank=True, null=True)
-  gps_y_coord = models.DecimalField(max_digits=18, decimal_places=15, blank=True, null=True)
+  # For gps coordinate we only take 3 decimal place, it gives an approximation of around 100 meters
+  # More informations https://wiki.gis.com/wiki/index.php/Decimal_degrees
+  gps_x_coord = models.DecimalField(max_digits=6, decimal_places=3, blank=True, null=True)
+  gps_y_coord = models.DecimalField(max_digits=6, decimal_places=3, blank=True, null=True)
   index_lamb_coord = models.CharField(max_length=255, blank=True, null=True)
   availibility_2G = models.BooleanField(default=False, verbose_name="2G availibility")
   availibility_3G = models.BooleanField(default=False, verbose_name="3G availibility")
