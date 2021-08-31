@@ -22,7 +22,7 @@ PROVIDER_CODE_NAME = (
   ('20820', 'Bouygues')
 )
 
-class ProviderAvailibilityCoord(DateModification):
+class ProviderAvailibility(DateModification):
   """
   Availibility of a provider connexion given a coordinate
   """

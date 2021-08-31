@@ -1,5 +1,6 @@
 from django.test import TestCase
 from .coord_converter import convert_lambert_to_gps
+from .models import ProviderAvailibility
 
 # Create your tests here.
 class CoordConverterTestCase(TestCase):
