@@ -1,6 +1,7 @@
 import pyproj
 from collections import namedtuple 
 
+
 def convert_lambert93_to_gps(x: int, y: int) -> tuple:
   """
   It returns a named tuple of gps coordinate from lambert93 coordinate
@@ -16,6 +17,7 @@ def convert_lambert93_to_gps(x: int, y: int) -> tuple:
   point = gps_coordinate(long, lat)
 
   return point
+
 
 def convert_gps_to_lambert93(long: int, lat: int) -> tuple:
   """
