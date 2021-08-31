@@ -8,6 +8,7 @@ django = "*"
 djangorestframework = "*"
 psycopg2 = "*"
 pyproj = "*"
+requests = "*"
 
 [dev-packages]
 pytest = "*"
