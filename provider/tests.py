@@ -43,7 +43,7 @@ class ProviderAvailibilityTestCase(TestCase):
     """index_lamb_coord should be concatenation of x and y lambert 93 coordinates"""
         #From csv provided 20810;103113;6848661;1;1;0
     ProviderAvailibility.objects.create(
-      operateur='20810',
+      provider_code='20810',
       lamb_x_coord=103113,
       lamb_y_coord=6848661,
       availibility_2G=True,
@@ -61,21 +61,21 @@ class ProviderAvailibilityTestCase(TestCase):
   def test_same_index_should_return_2_rows(self):
     """We test the case when two rows have same index but different operators"""
     ProviderAvailibility.objects.create(
-    operateur='20810',
-    lamb_x_coord=103113,
-    lamb_y_coord=6848661,
-    availibility_2G=True,
-    availibility_3G=True,
-    availibility_4G=False)
+      provider_code='20810',
+      lamb_x_coord=103113,
+      lamb_y_coord=6848661,
+      availibility_2G=True,
+      availibility_3G=True,
+      availibility_4G=False)
 
     ProviderAvailibility.objects.create(
-    operateur='20815',
-    lamb_x_coord=103113,
-    lamb_y_coord=6848661,
-    availibility_2G=False,
-    availibility_3G=False,
-    availibility_4G=False)
+      provider_code='20815',
+      lamb_x_coord=103113,
+      lamb_y_coord=6848661,
+      availibility_2G=False,
+      availibility_3G=False,
+      availibility_4G=False)
 
     coord = ProviderAvailibility.objects.all().filter(index_lamb_coord='1031136848661')
-    self.assertEqual(coord[0].operateur, '20810')
-    self.assertEqual(coord[1].operateur, '20815')
+    self.assertEqual(coord[0].provider_code, '20810')
+    self.assertEqual(coord[1].provider_code, '20815')
