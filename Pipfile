@@ -11,6 +11,7 @@ pyproj = "*"
 
 [dev-packages]
 pytest = "*"
+redgreenunittest = "*"
 
 [requires]
 python_version = "3.6"
