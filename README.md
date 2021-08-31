@@ -44,7 +44,15 @@ python manage.py migrate
 
 ### 3.Provider
 
-### 4.Others files
+### 4.Scripts
+
+The folder script contains all independant scripts
+
+Using Heroku scheduler and one off dynos, it can be used to clean, purge, save or any other independant operations
+
+**create_fixture_file.py** : Insert all row from the following csv https://www.data.gouv.fr/s/resources/monreseaumobile/20180228-174515/2018_01_Sites_mobiles_2G_3G_4G_France_metropolitaine_L93.csv
+
+### 5.Others files
 
 **env.prototype** contains definition about environmental variables used in the project
 **api.swagger.docs** is the definition of our api following SWAGGER/OPEN API documentation

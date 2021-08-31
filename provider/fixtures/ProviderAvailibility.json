@@ -1,0 +1,44 @@
+[
+  {
+    "model": "provider.ProviderAvailibility",
+    "pk": 1,
+    "fields": {
+      "creation_date": "2013-01-31T12:34:00.000Z",
+      "last_modification_date": "2021-08-31T12:34:00.000Z",
+      "provider_code": "20801",
+      "lamb_x_coord": "102980",
+      "lamb_y_coord": "6847973",
+      "availibility_2G": "1",
+      "availibility_3G": "1",
+      "availibility_4G": "0"
+    }
+  },
+  {
+    "model": "provider.ProviderAvailibility",
+    "pk": 2,
+    "fields": {
+      "creation_date": "2013-01-31T12:34:00.000Z",
+      "last_modification_date": "2021-08-31T12:34:00.000Z",
+      "provider_code": "20810",
+      "lamb_x_coord": "103113",
+      "lamb_y_coord": "6848661",
+      "availibility_2G": "1",
+      "availibility_3G": "1",
+      "availibility_4G": "0"
+    }
+  },
+  {
+    "model": "provider.ProviderAvailibility",
+    "pk": 3,
+    "fields": {
+      "creation_date": "2013-01-31T12:34:00.000Z",
+      "last_modification_date": "2021-08-31T12:34:00.000Z",
+      "provider_code": "20820",
+      "lamb_x_coord": "103114",
+      "lamb_y_coord": "6848664",
+      "availibility_2G": "1",
+      "availibility_3G": "1",
+      "availibility_4G": "1"
+    }
+  }
+]

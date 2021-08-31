@@ -5,6 +5,7 @@ db.sqlite3
 /media
 /venv
 /env
+/data
 __pycache__
 
 # local env files
