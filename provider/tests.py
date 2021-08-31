@@ -64,8 +64,8 @@ class ProviderAvailibilityTestCase(TestCase):
     self.assertEqual(coord.provider_name, 'SFR')
 
     # We use almost equal to workaround truncating and rounding of decimals
-    self.assertAlmostEqual(coord.gps_x_coord, Decimal(-5.088018169414728))
-    self.assertAlmostEqual(coord.gps_y_coord, Decimal(48.46285384827896))
+    self.assertAlmostEqual(coord.gps_x_coord, Decimal(-5.088))
+    self.assertAlmostEqual(coord.gps_y_coord, Decimal(48.463))
 
   def test_same_index_should_return_2_rows(self):
     """We test the case when two rows have same index but different operators"""
