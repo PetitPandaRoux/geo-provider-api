@@ -11,6 +11,7 @@ import os
 
 from django.core.asgi import get_asgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'project.settings')
+# This will set production as default, but we must still set it with an
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'project.settings.prod')
 
 application = get_asgi_application()
