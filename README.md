@@ -13,30 +13,62 @@ A webservice that give you provider availibility on 3G,4G and 5G based on your l
 
 How to set up the project on a local machine
 
-### REQUIREMENTS
-
-## Requirements
+### 1 REQUIREMENTS
 
 Be sure to have those elements before starting
 
-- Python 3 - [installation et doc](https://wiki.python.org/moin/BeginnersGuide)
+- Python 3.6.9 - [installation et doc](https://wiki.python.org/moin/BeginnersGuide)
 - pipenv - [installation et doc](https://virtualenv.pypa.io/en/latest/)
 - Git - [installation et doc](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
 
-## Settings up project - using bash
+### 2 Settings up project - using bash
+
+Get repo from github
 
 ```bash
-git clone https:
+git clone https://github.com/PetitPandaRoux/geo-provider-api
 cd geo-provider-api
 ```
 
+Run python classic setup using pipenv
+
+Install dependencies
+
 ```bash
 pipenv install
+```
+
+Run local environment for python
+
+```bash
 pipenv shell
+```
+
+Run python classic setup for django project
+
+Create database
+
+```bash
 python manage.py migrate
 ```
 
-## PROJECT STRUCTURE
+Create superuser to access backend and create some provider geolocation by hand if needed
+
+```bash
+python manage.py createsuperuser
+```
+
+Run server
+
+```bash
+python manage.py runserver
+```
+
+### 3 Filling local database
+
+Work in progress
+
+## III. PROJECT STRUCTURE
 
 You have 4 main directories
 
@@ -77,4 +109,8 @@ You can access the schema using the following endpoint : /openapi/
 
 ### COORDINATES CIRCLE PERIMETERS
 
-In the near future we will check if coordinates given by user
+In the near future we will check if coordinates given by user is inside a certain radius(100 meters for example) of our coordinates.
+
+We will implement something like :
+https://stackoverflow.com/questions/4913349/haversine-formula-in-python-bearing-and-distance-between-two-gps-points
+https://stackoverflow.com/questions/42686300/how-to-check-if-coordinate-inside-certain-area-python
