@@ -38,11 +38,25 @@ python manage.py migrate
 
 ## PROJECT STRUCTURE
 
+You have 4 main directories
+
 ### 1.Project
+
+A django project
+
+It is where you will find project settings for dev and production environnements, urls
 
 ### 2.Api
 
+A django app
+
+It is where we handle serializers, views, integration test and api endpoints
+
 ### 3.Provider
+
+A django app
+
+It contains all element relative to our model, coordinate converter using pyproj and some unit tests
 
 ### 4.Scripts
 
@@ -56,3 +70,9 @@ Using Heroku scheduler and one off dynos, it can be used to clean, purge, save o
 
 **env.prototype** contains definition about environmental variables used in the project
 **api.swagger.docs** is the definition of our api following SWAGGER/OPEN API documentation
+
+## FURTHER FEATURES
+
+### COORDINATES CIRCLE PERIMETERS
+
+In the near future we will check if coordinates given by user 

@@ -5,23 +5,35 @@ from django.conf import settings
 from rest_framework.decorators import api_view, renderer_classes
 from rest_framework.renderers import JSONRenderer
 from rest_framework.response import Response
-from rest_framework import generics, mixins, viewsets, filters
+from rest_framework import generics
 
 from provider.models import ProviderAvailibility
 from api.serializers import ProviderAvailibilitySerializer
 
-from .data_gouv_helpers import build_json_instruction, truncate, redirect_params
+from .data_gouv_helpers import (
+    manage_multiple_address_reponses,
+    truncate,
+    redirect_params,
+)
 import requests
-
-# Create your views here.
 
 
 class ProviderListView(generics.ListAPIView):
-    queryset = ProviderAvailibility.objects.all()
+    """This is a view used test"""
+
+    queryset = ProviderAvailibility.objects.all()[:5]
     serializer_class = ProviderAvailibilitySerializer
 
 
 class ProviderCoordinateView(generics.ListAPIView):
+    """
+    This view generate information on provider availibility on given long and lat coordinate
+
+    params:
+      long {Float} -- Longitude
+      lat {Float}  -- Latitude
+    """
+
     queryset = ProviderAvailibility.objects.all()
     serializer_class = ProviderAvailibilitySerializer
 
@@ -29,6 +41,13 @@ class ProviderCoordinateView(generics.ListAPIView):
         longitude = self.request.query_params.get("long", None)
         latitude = self.request.query_params.get("lat", None)
         return self.queryset.filter(gps_x_coord=longitude).filter(gps_y_coord=latitude)
+
+
+@api_view(["GET"])
+@renderer_classes([JSONRenderer])
+def end_point_failed(request):
+    error_json = request.GET.get("error", "")
+    return Response(error_json)
 
 
 @api_view(["GET"])
@@ -71,10 +90,12 @@ def get_addres_info(request):
             {"error": "Your address is not precise enough, too many possibilities"},
         )
 
-    # If more than one response, address is not precise enough, we will send back multiples possibilities
+    # api-adresse.data.gouv.fr can send back multiples possibilities if search is narrow enough
     if len(response_json.get("features")) > 1:
         current_url = request.build_absolute_uri()
-        responses = build_json_instruction(current_url, response_json.get("features"))
+        responses = manage_multiple_address_reponses(
+            current_url, response_json.get("features")
+        )
         return Response(responses)
 
     response_json = response_json.get("features")
@@ -85,16 +106,3 @@ def get_addres_info(request):
 
     return redirect_params("api-provider-items", {"long": longitude, "lat": latitude})
     # return redirect('api-provider-items', long=longitude, lat=latitude)
-
-
-@api_view(["GET"])
-@renderer_classes([JSONRenderer])
-def bad_parameters(request):
-    return Response(response_json)
-
-
-@api_view(["GET"])
-@renderer_classes([JSONRenderer])
-def end_point_failed(request):
-    error_json = request.GET.get("error", "")
-    return Response(error_json)
