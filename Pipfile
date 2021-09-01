@@ -9,6 +9,7 @@ djangorestframework = "*"
 psycopg2 = "*"
 pyproj = "*"
 requests = "*"
+pyyaml = "*"
 
 [dev-packages]
 pytest = "*"
