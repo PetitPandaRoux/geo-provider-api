@@ -101,6 +101,7 @@ Using Heroku scheduler and one off dynos, it can be used to clean, purge, save o
 ### 5.Others files
 
 **env.prototype** contains definition about environmental variables used in the project
+
 **schema.yml** is the definition of our api following SWAGGER/OPEN API documentation using yml format
 
 You can access the schema using the following endpoint : /openapi/
