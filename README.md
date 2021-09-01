@@ -6,7 +6,6 @@ A webservice that give you provider availibility on 3G,4G and 5G based on your l
 
 - Django
 - Django REST framework
-- Gunicorn
 - Configuration for Heroku Deployment
 
 ## II. SETUP
