@@ -1,0 +1,84 @@
+openapi: 3.0.2
+info:
+  title: ''
+  version: ''
+paths:
+  /api/address/:
+    get:
+      operationId: listget_addres_infos
+      description: This view call the gouvernment API to get gps long and lat of the
+        address
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items: {}
+          description: ''
+      tags:
+      - api
+  /api/providers/:
+    get:
+      operationId: listProviderAvailibilitys
+      description: This is a view used test
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ProviderAvailibility'
+          description: ''
+      tags:
+      - api
+  /api/provider/coordinate/:
+    get:
+      operationId: listProviderAvailibilitys
+      description: This view generate information on provider availibility on given
+        long and lat coordinate
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ProviderAvailibility'
+          description: ''
+      tags:
+      - api
+  /api/failed-endpoint/:
+    get:
+      operationId: listend_point_faileds
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items: {}
+          description: ''
+      tags:
+      - api
+components:
+  schemas:
+    ProviderAvailibility:
+      type: object
+      properties:
+        provider_name:
+          type: string
+          nullable: true
+          maxLength: 255
+        availibility_2G:
+          type: boolean
+        availibility_3G:
+          type: boolean
+        availibility_4G:
+          type: boolean

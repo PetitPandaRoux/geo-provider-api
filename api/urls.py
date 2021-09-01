@@ -3,6 +3,7 @@ from .views import ProviderListView, ProviderCoordinateView
 
 from . import views
 
+
 urlpatterns = [
     path("address/", views.get_addres_info, name="api-get-address"),
     path("providers/", ProviderListView.as_view(), name="api-provider-list-all"),
