@@ -43,7 +43,7 @@ class ProviderAvailibility(DateModification):
 
   def save(self, *args, **kwargs):
     # Fill gps coordinate if needed
-    if(not self.gps_x_coord or not self.gps_y_coordinate):
+    if(not self.gps_x_coord or not self.gps_y_coord):
       point = convert_lambert93_to_gps(self.lamb_x_coord, self.lamb_y_coord)
       self.gps_x_coord = point.long
       self.gps_y_coord = point.lat
