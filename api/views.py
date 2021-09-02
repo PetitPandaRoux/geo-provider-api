@@ -19,7 +19,7 @@ import requests
 
 
 class ProviderListView(generics.ListAPIView):
-    """This is a view used test"""
+    """This is a view used for testing"""
 
     queryset = ProviderAvailibility.objects.all()[:5]
     serializer_class = ProviderAvailibilitySerializer
@@ -34,13 +34,35 @@ class ProviderCoordinateView(generics.ListAPIView):
       lat {Float}  -- Latitude
     """
 
-    queryset = ProviderAvailibility.objects.all()
     serializer_class = ProviderAvailibilitySerializer
 
     def get_queryset(self):
         longitude = self.request.query_params.get("long", None)
         latitude = self.request.query_params.get("lat", None)
-        return self.queryset.filter(gps_x_coord=longitude).filter(gps_y_coord=latitude)
+
+        # If no parameters passed we send back to get failed url
+        if latitude is None or longitude is None:
+            return redirect_params(
+                "end_point_failed",
+                {
+                    "error": "Coordinates must be passed as parameters: http://localhost:8000/api/provider/coordinate/?long=2.63&lat=48.833"
+                },
+            )
+
+        longitude = truncate(float(longitude), 3)
+        latitude = truncate(float(latitude), 3)
+
+        square_half_side = 0.01  # represent one kilometer around equator
+        # We want to get all provider avaibility in a square of 0.02 by 0.02 where our coordinate will be the center
+
+        queryset = ProviderAvailibility.objects.filter(
+            gps_x_coord__gte=longitude - square_half_side
+        ).filter(gps_x_coord__lte=longitude + square_half_side)
+        queryset = queryset.filter(gps_y_coord__gte=latitude - square_half_side).filter(
+            gps_y_coord__lte=latitude + square_half_side
+        )
+
+        return queryset
 
 
 @api_view(["GET"])

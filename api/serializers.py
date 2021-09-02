@@ -8,6 +8,8 @@ class ProviderAvailibilitySerializer(serializers.ModelSerializer):
         model = ProviderAvailibility
         fields = [
             "provider_name",
+            "gps_x_coord",
+            "gps_y_coord",
             "availibility_2G",
             "availibility_3G",
             "availibility_4G",
