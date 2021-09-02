@@ -110,7 +110,7 @@ Using Heroku scheduler and one off dynos, it can be used to clean, purge, save o
 
 **fill_database_bulk.py** : Insert all row from the following csv https://www.data.gouv.fr/s/resources/monreseaumobile/20180228-174515/2018_01_Sites_mobiles_2G_3G_4G_France_metropolitaine_L93.csv using bulk_api
 
-_warning_ Both scripts are slow. The first one because its goes one by one. The second because bulk_create doesn't trigger post_save signal, we need to create all fields/columns and it slows the script. There is also a risk of too much memory for second script.
+***warning*** Both scripts are slow. The first one because its goes one by one. The second because bulk_create doesn't trigger post_save signal, we need to create all fields/columns and it slows the script. There is also a risk of too much memory for second script.
 
 ### 5.Others files
 
@@ -126,7 +126,7 @@ You can access the schema using the following endpoint : /openapi/
 
 In the near future we will check if coordinates given by user is inside a certain radius(1000 meters for example) of our coordinates instead of using a square area
 
-_warning_ Because we use latitude and longitude in our square area, the area is not same depending on the **earth curvature**. The square will be smaller if the coordinate given is at the pole.
+***warning*** Because we use latitude and longitude in our square area, the area is not same depending on the **earth curvature**. The square will be smaller if the coordinate given is at the pole.
 
 We will implement something like :
 https://stackoverflow.com/questions/4913349/haversine-formula-in-python-bearing-and-distance-between-two-gps-points
