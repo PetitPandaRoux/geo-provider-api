@@ -63,6 +63,13 @@ Run server
 python manage.py runserver
 ```
 
+Finally you can fill database (locally) using one of the two following scripts :
+
+```bash
+python scripts/fill_database_dev.py
+python scripts/fill_database_bulk_dev.py
+```
+
 ### 3 Filling local database
 
 Work in progress
@@ -96,6 +103,10 @@ The folder script contains all independant scripts
 Using Heroku scheduler and one off dynos, it can be used to clean, purge, save or any other independant operations
 
 **fill_database_dev.py** : Insert all row from the following csv https://www.data.gouv.fr/s/resources/monreseaumobile/20180228-174515/2018_01_Sites_mobiles_2G_3G_4G_France_metropolitaine_L93.csv
+
+**fill_database_bulk.py** : Insert all row from the following csv https://www.data.gouv.fr/s/resources/monreseaumobile/20180228-174515/2018_01_Sites_mobiles_2G_3G_4G_France_metropolitaine_L93.csv using bulk_api
+
+_warning_ Both scripts are slow. The first one because its goes one by one. The second because bulk_create doesn't trigger post_save signal, we need to create all fields/columns and it slows the script. There is also a risk of too much memory for second script.
 
 ### 5.Others files
 
