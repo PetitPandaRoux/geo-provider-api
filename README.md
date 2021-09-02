@@ -12,7 +12,7 @@ A webservice that give you provider availibility on 3G,4G and 5G based on your l
 
 How to set up the project on a local machine
 
-### 1 REQUIREMENTS
+### 1.REQUIREMENTS
 
 Be sure to have those elements before starting
 
@@ -20,7 +20,7 @@ Be sure to have those elements before starting
 - pipenv - [installation et doc](https://virtualenv.pypa.io/en/latest/)
 - Git - [installation et doc](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
 
-### 2 Settings up project - using bash
+### 2.Settings up project - using bash
 
 Get repo from github
 
@@ -63,6 +63,8 @@ Run server
 python manage.py runserver
 ```
 
+### 3.Filling local database
+
 Finally you can fill database (locally) using one of the two following scripts :
 
 ```bash
@@ -70,13 +72,15 @@ python scripts/fill_database_dev.py
 python scripts/fill_database_bulk_dev.py
 ```
 
-### 3 Filling local database
+### 4. How it works
 
-Work in progress
+**first step**: The webservice use data.gouv API to retrieve coordinates from address given.
+
+**second step**: With thoses GPS coordinates we will look in our database for all provider gps coordinates around the given point. The coordinate will be the center of a square : 0.02 long by 0.02 lat by default
 
 ## III. PROJECT STRUCTURE
 
-You have 4 main directories
+You have 4 main directories.
 
 ### 1.Project
 
@@ -116,11 +120,13 @@ _warning_ Both scripts are slow. The first one because its goes one by one. The 
 
 You can access the schema using the following endpoint : /openapi/
 
-## FURTHER FEATURES
+## IV FURTHER FEATURES
 
-### COORDINATES CIRCLE PERIMETERS
+### COORDINATES AROUND CIRCLE AREA
 
-In the near future we will check if coordinates given by user is inside a certain radius(100 meters for example) of our coordinates.
+In the near future we will check if coordinates given by user is inside a certain radius(1000 meters for example) of our coordinates instead of using a square area
+
+_warning_ Because we use latitude and longitude in our square area, the area is not same depending on the **earth curvature**. The square will be smaller if the coordinate given is at the pole.
 
 We will implement something like :
 https://stackoverflow.com/questions/4913349/haversine-formula-in-python-bearing-and-distance-between-two-gps-points
